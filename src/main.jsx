@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import {
   BarChart3, BrainCircuit, Code2, Database, Download, ExternalLink,
-  Github, Linkedin, Mail, Menu, X, ArrowUpRight, FileSpreadsheet,
-  BriefcaseBusiness, GraduationCap, Award, ChevronRight
+Github, Linkedin, Mail, Menu, X, ArrowUpRight, FileSpreadsheet,
+BriefcaseBusiness, GraduationCap, Award, ChevronRight,
+MessageCircle, Send
 } from "lucide-react";
 import "./styles.css";
 
@@ -185,7 +186,18 @@ function SectionTitle({ eyebrow, title, text }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [filter, setFilter] = useState("all");
+const [filter, setFilter] = useState("all");
+
+const [chatOpen, setChatOpen] = useState(false);
+
+const [chatMessages, setChatMessages] = useState([
+  {
+    sender: "bot",
+    text: "Hey! I'm Nikhil's portfolio assistant. Ask me about his projects, experience, skills, education, or anything about his work."
+  }
+]);
+
+const [chatInput, setChatInput] = useState("");
   useEffect(() => {
   const elements = document.querySelectorAll(".reveal");
 
@@ -213,6 +225,286 @@ function App() {
 
   const closeMenu = () => setMenuOpen(false);
 
+const handleChatSubmit = (e) => {
+  e.preventDefault();
+
+  const message = chatInput.trim();
+
+  if (!message) return;
+
+  setChatMessages((prev) => [
+    ...prev,
+    {
+      sender: "user",
+      text: message
+    }
+  ]);
+
+  setChatInput("");
+
+  setTimeout(() => {
+    const question = message
+      .toLowerCase()
+      .trim()
+      .replace(/[?!.,]/g, "");
+
+    let response = "";
+
+    // --------------------------------
+    // GREETING
+    // --------------------------------
+
+    if (/^(hi|hello|hey|hiya|good morning|good afternoon|good evening)$/.test(question)) {
+      response =
+        "Hey! 👋 I'm Nikhil's portfolio assistant. What would you like to know about him?";
+    }
+
+    // --------------------------------
+    // ABOUT NIKHIL
+    // --------------------------------
+
+    else if (
+      question.includes("who is nikhil") ||
+      question.includes("who's nikhil") ||
+      question.includes("about nikhil") ||
+      question.includes("tell me about nikhil")
+    ) {
+      response =
+        "Nikhil Sharma is a Data Analyst and technology professional focused on Data Analytics, Power BI, Python, AI/ML and modern web development.";
+    }
+
+    // --------------------------------
+    // SKILLS
+    // --------------------------------
+
+    else if (
+      question.includes("skill") ||
+      question.includes("skills") ||
+      question.includes("technical skill") ||
+      question.includes("technical skills") ||
+      question.includes("technologies") ||
+      question.includes("technology") ||
+      question.includes("tech stack") ||
+      question.includes("what can nikhil do") ||
+      question.includes("what does nikhil know") ||
+      question.includes("main skills") ||
+      question.includes("key skills")
+    ) {
+      response =
+        "Nikhil's main technical skills include Power BI, DAX, SQL, MySQL, Advanced Excel, Python, Pandas, NumPy, Matplotlib, Machine Learning, Scikit-learn, React, JavaScript, HTML, CSS, Git and GitHub.";
+    }
+
+    // --------------------------------
+    // POWER BI
+    // --------------------------------
+
+    else if (
+      question.includes("power bi") ||
+      question.includes("powerbi") ||
+      question.includes("dax")
+    ) {
+      response =
+        "Nikhil works with Power BI and DAX to build interactive dashboards, KPI reports and business intelligence solutions. His portfolio includes a Rapido Ride Analytics Dashboard and a Sales Performance Dashboard.";
+    }
+
+    // --------------------------------
+    // PYTHON
+    // --------------------------------
+
+    else if (
+      question.includes("python") ||
+      question.includes("pandas") ||
+      question.includes("numpy") ||
+      question.includes("matplotlib")
+    ) {
+      response =
+        "Nikhil uses Python for data analysis, automation, visualization and machine learning. His Python toolkit includes Pandas, NumPy, Matplotlib and Scikit-learn.";
+    }
+
+    // --------------------------------
+    // SQL
+    // --------------------------------
+
+    else if (
+      question.includes("sql") ||
+      question.includes("mysql") ||
+      question.includes("database") ||
+      question.includes("query")
+    ) {
+      response =
+        "Nikhil works with SQL and MySQL for data analysis and business-oriented data problems. His work includes querying data, joins, aggregations, CTEs and analytical workflows.";
+    }
+
+    // --------------------------------
+    // PROJECTS
+    // --------------------------------
+
+    else if (
+      question.includes("project") ||
+      question.includes("projects") ||
+      question.includes("portfolio projects") ||
+      question.includes("what has nikhil built") ||
+      question.includes("what did nikhil build")
+    ) {
+      response =
+        "Nikhil's featured projects include the Rapido Ride Analytics Dashboard, Sales Performance Dashboard, AI-Based Smart Traffic Monitoring & Congestion Prediction System, and his Personal Portfolio Website.";
+    }
+
+    // --------------------------------
+    // RAPIDO
+    // --------------------------------
+
+    else if (
+      question.includes("rapido") ||
+      question.includes("ride analytics") ||
+      question.includes("ride dashboard")
+    ) {
+      response =
+        "The Rapido Ride Analytics Dashboard is a Power BI project focused on ride performance, revenue, customer behavior, cancellations, vehicle performance and city-level trends. It uses Power BI, DAX, Excel and data modeling.";
+    }
+
+    // --------------------------------
+    // SALES DASHBOARD
+    // --------------------------------
+
+    else if (
+      question.includes("sales dashboard") ||
+      question.includes("sales project") ||
+      question.includes("sales performance")
+    ) {
+      response =
+        "The Sales Performance Dashboard focuses on revenue, profit, profit margin, orders, average order value, products, regions and customer segments using Power BI, DAX, SQL and Excel.";
+    }
+
+    // --------------------------------
+    // TRAFFIC / AI PROJECT
+    // --------------------------------
+
+    else if (
+      question.includes("traffic") ||
+      question.includes("congestion") ||
+      question.includes("computer vision")
+    ) {
+      response =
+        "Nikhil developed an AI-Based Smart Traffic Monitoring & Congestion Prediction System using Python, OpenCV, NumPy, Machine Learning and Data Analytics. The project focuses on vehicle detection, traffic density analysis and congestion prediction.";
+    }
+
+    // --------------------------------
+    // EXPERIENCE
+    // --------------------------------
+
+    else if (
+      question.includes("experience") ||
+      question.includes("work experience") ||
+      question.includes("professional experience") ||
+      question.includes("job") ||
+      question.includes("company") ||
+      question.includes("worked")
+    ) {
+      response =
+        "Nikhil has professional experience as a Data Analyst at Mahalaxmi Digital Services. His work involved business data analysis, reporting, visualization, data cleaning, transformation and supporting data-driven decision making using Python, SQL and Excel.";
+    }
+
+    // --------------------------------
+    // EDUCATION
+    // --------------------------------
+
+    else if (
+      question.includes("education") ||
+      question.includes("degree") ||
+      question.includes("college") ||
+      question.includes("university") ||
+      question.includes("btech") ||
+      question.includes("b.tech")
+    ) {
+      response =
+        "Nikhil is pursuing a B.Tech in Computer Science & Engineering at K.R. Mangalam University, with a specialization in Artificial Intelligence & Machine Learning.";
+    }
+
+    // --------------------------------
+    // AI / MACHINE LEARNING
+    // --------------------------------
+
+    else if (
+      question.includes("machine learning") ||
+      question.includes("machine-learning") ||
+      question.includes("ai/ml") ||
+      question.includes("artificial intelligence") ||
+      question.includes("ai") ||
+      question.includes("scikit")
+    ) {
+      response =
+        "Nikhil works with AI/ML concepts including Machine Learning, Scikit-learn, data preprocessing, feature engineering and model evaluation. He has also worked on an AI-based traffic monitoring and congestion prediction project.";
+    }
+
+    // --------------------------------
+    // CERTIFICATIONS
+    // --------------------------------
+
+    else if (
+      question.includes("certification") ||
+      question.includes("certifications") ||
+      question.includes("certificate")
+    ) {
+      response =
+        "Nikhil's certifications include Data Analysis with Python, Data Visualization with Python, Python 101 for Data Science, Big Data Engineer and Clean Coding With Python.";
+    }
+
+    // --------------------------------
+    // CONTACT
+    // --------------------------------
+
+    else if (
+      question.includes("contact") ||
+      question.includes("email") ||
+      question.includes("hire") ||
+      question.includes("reach nikhil")
+    ) {
+      response =
+        "You can contact Nikhil at nikhillsharma455@gmail.com. You can also connect with him through LinkedIn or GitHub using the Contact section of this portfolio.";
+    }
+
+    // --------------------------------
+    // GITHUB
+    // --------------------------------
+
+    else if (
+      question.includes("github") ||
+      question.includes("code")
+    ) {
+      response =
+        "Nikhil's GitHub username is Nikhil22017, where you can explore his development and project work.";
+    }
+
+    // --------------------------------
+    // FALLBACK
+    // --------------------------------
+
+    else {
+      response =
+        "I don't have enough information to answer that accurately. You can ask me about Nikhil's skills, Power BI projects, Python, AI/ML, experience, education, certifications or contact information.";
+    }
+
+    setChatMessages((prev) => [
+      ...prev,
+      {
+        sender: "bot",
+        text: response
+      }
+    ]);
+  }, 500);
+};
+const askSuggestedQuestion = (question) => {
+  setChatInput(question);
+
+  setTimeout(() => {
+    const fakeEvent = {
+      preventDefault: () => {}
+    };
+
+    handleChatSubmit(fakeEvent);
+  }, 50);
+};
   return (
     <div className="site-shell">
       <header className="navbar">
@@ -315,6 +607,47 @@ function App() {
 
         </div>
 </section>
+{/* Skills Marquee */}
+<div className="skills-marquee">
+  <div className="marquee-track">
+
+    <span>DATA ANALYTICS</span>
+    <i>✦</i>
+    <span>POWER BI</span>
+    <i>✦</i>
+    <span>PYTHON</span>
+    <i>✦</i>
+    <span>SQL</span>
+    <i>✦</i>
+    <span>AI / ML</span>
+    <i>✦</i>
+    <span>MACHINE LEARNING</span>
+    <i>✦</i>
+    <span>DATA VISUALIZATION</span>
+    <i>✦</i>
+    <span>REACT</span>
+    <i>✦</i>
+
+    {/* Duplicate content for seamless animation */}
+    <span>DATA ANALYTICS</span>
+    <i>✦</i>
+    <span>POWER BI</span>
+    <i>✦</i>
+    <span>PYTHON</span>
+    <i>✦</i>
+    <span>SQL</span>
+    <i>✦</i>
+    <span>AI / ML</span>
+    <i>✦</i>
+    <span>MACHINE LEARNING</span>
+    <i>✦</i>
+    <span>DATA VISUALIZATION</span>
+    <i>✦</i>
+    <span>REACT</span>
+    <i>✦</i>
+
+  </div>
+</div>
 
           <section id="about" className="section reveal">
   <SectionTitle
@@ -905,7 +1238,7 @@ function App() {
 
     <a
       className="contact-card"
-      href="www.linkedin.com/in/nikhil-sharma-2004d1a0"
+      href="https://www.linkedin.com/in/nikhil-sharma-2004d1a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
       target="_blank"
       rel="noreferrer"
     >
@@ -974,6 +1307,160 @@ function App() {
   </div>
 
 </section>
+{/* WhatsApp Floating Button */}
+<a
+  href="https://wa.me/919560371261?text=Hi%20Nikhil%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity."
+  className="whatsapp-widget"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Contact Nikhil on WhatsApp"
+>
+  <svg
+    viewBox="0 0 32 32"
+    className="whatsapp-icon"
+    aria-hidden="true"
+  >
+    <path
+      d="M19.11 17.23c-.27-.14-1.61-.79-1.86-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.17-1.34-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27s.98 2.63 1.11 2.81c.14.18 1.93 2.95 4.68 4.13.65.28 1.16.45 1.55.58.65.21 1.24.18 1.7.11.52-.08 1.61-.66 1.84-1.29.23-.64.23-1.18.16-1.29-.07-.11-.25-.18-.52-.32z"
+    />
+    <path
+      d="M16.02 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.59 4.46 1.72 6.4L3.2 28.8l6.55-1.72a12.76 12.76 0 0 0 6.27 1.64h.01c7.06 0 12.8-5.74 12.8-12.8S23.08 3.2 16.02 3.2zm0 23.43h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.89 1.02 1.04-3.79-.25-.4a10.61 10.61 0 1 1 8.9 4.88z"
+    />
+  </svg>
+</a>
+{/* ================================
+    AI PORTFOLIO CHAT
+================================ */}
+
+<div className="chat-widget">
+
+  {chatOpen && (
+    <div className="chat-window">
+
+      {/* Header */}
+      <div className="chat-header">
+
+        <div className="chat-profile">
+
+          <div className="chat-avatar">
+            NS
+          </div>
+
+          <div>
+            <h3>Ask about Nikhil</h3>
+
+            <span className="chat-subtitle">
+              <span className="chat-status"></span>
+              Portfolio Assistant
+            </span>
+          </div>
+
+        </div>
+
+        <button
+          className="chat-close"
+          onClick={() => setChatOpen(false)}
+          aria-label="Close chat"
+        >
+          <X size={21} />
+        </button>
+
+      </div>
+
+
+      {/* Messages */}
+      <div className="chat-messages">
+
+        {chatMessages.map((message, index) => (
+          <div
+            key={index}
+            className={`chat-message ${
+              message.sender === "user"
+                ? "user-message"
+                : "bot-message"
+            }`}
+          >
+            {message.text}
+          </div>
+        ))}
+
+      </div>
+
+
+      {/* Suggested questions */}
+      {chatMessages.length === 1 && (
+        <div className="chat-suggestions">
+
+          <button
+  onClick={() =>
+    askSuggestedQuestion("What are Nikhil's main skills?")
+  }
+>
+  His skills
+</button>
+
+          <button
+  onClick={() =>
+    askSuggestedQuestion("Tell me about his projects.")
+  }
+>
+  His projects
+</button>
+
+<button
+  onClick={() =>
+    askSuggestedQuestion("Tell me about his experience.")
+  }
+>
+  His experience
+</button>
+
+        </div>
+      )}
+
+
+      {/* Input */}
+      <form
+        className="chat-input-area"
+        onSubmit={handleChatSubmit}
+      >
+
+        <input
+          type="text"
+          value={chatInput}
+          onChange={(e) => setChatInput(e.target.value)}
+          placeholder="Ask something..."
+          aria-label="Ask Nikhil's portfolio assistant"
+        />
+
+        <button
+          type="submit"
+          className="chat-send"
+          aria-label="Send message"
+        >
+          <Send size={19} />
+        </button>
+
+      </form>
+
+    </div>
+  )}
+
+
+  {/* Floating button */}
+  <button
+    className={`chat-launcher ${
+      chatOpen ? "chat-launcher-hidden" : ""
+    }`}
+    onClick={() => setChatOpen(true)}
+    aria-label="Open portfolio assistant"
+  >
+    <MessageCircle size={27} />
+
+    <span className="chat-pulse"></span>
+  </button>
+
+</div>
       <footer>
   <div className="footer-brand">
     <span className="brand-mark">NS</span>
