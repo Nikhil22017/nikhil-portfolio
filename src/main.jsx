@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import {
   BarChart3, BrainCircuit, Code2, Database, Download, ExternalLink,
@@ -186,6 +186,27 @@ function SectionTitle({ eyebrow, title, text }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [filter, setFilter] = useState("all");
+  useEffect(() => {
+  const elements = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+    }
+  );
+
+  elements.forEach((element) => observer.observe(element));
+
+  return () => observer.disconnect();
+}, []);
 
   const filteredProjects =
     filter === "all" ? projects : projects.filter((p) => p.type === filter);
@@ -215,84 +236,87 @@ function App() {
       </header>
 
       <main>
-        <section id="home" className="hero section">
-          <div className="hero-grid"></div>
-          <div className="hero-content">
-  <div className="status-pill">
-    <span></span> Open to opportunities
-  </div>
+        <section id="home" className="hero-section">
+    <div className="hero-container">
 
-  <p className="hero-kicker">
-    Hello, I'm Nikhil Sharma 👋
-  </p>
+        {/* LEFT SIDE */}
+        <div className="hero-content">
 
-  <h1>
-    Data Analyst
-    <br />
-    <span>Power BI Developer</span>
-    <br />
-    Python & <span>AI/ML Enthusiast</span>
-  </h1>
-
-  <p className="hero-description">
-    I transform raw data into actionable insights through data analytics,
-    interactive Power BI dashboards, Python automation, and machine learning.
-    I also build modern, responsive web applications.
-  </p>
-
-  <div className="hero-actions">
-    <a className="btn btn-primary" href="#projects">
-      View My Projects <ArrowUpRight size={18} />
-    </a>
-
-    <a className="btn btn-secondary" href="#about">
-      Explore My Profile <ChevronRight size={18} />
-    </a>
-  </div>
-
-  <div className="hero-stats">
-    <div>
-      <strong>4+</strong>
-      <span>Core Domains</span>
-    </div>
-
-    <div>
-      <strong>8+</strong>
-      <span>Technical Skills</span>
-    </div>
-
-    <div>
-      <strong>6</strong>
-      <span>Featured Projects</span>
-    </div>
-  </div>
-</div>
-
-          <div className="hero-card">
-            <div className="code-window">
-              <div className="window-top"><i></i><i></i><i></i><span>nikhil_profile.py</span></div>
-              <pre>{`profile = {
-  "name": "Nikhil Sharma",
-  "role": [
-    "Data Analyst",
-    "Power BI Developer",
-    "Python Developer",
-    "AI/ML Engineer",
-    "Web Developer"
-  ],
-  "focus": [
-    "Data Analytics",
-    "Business Intelligence",
-    "Automation",
-    "Machine Learning"
-  ],
-  "mindset": "Build. Analyze. Improve."
-}`}</pre>
+            <div className="availability">
+                <span className="status-dot"></span>
+                Open to opportunities
             </div>
-          </div>
-        </section>
 
-          <section id="about" className="section">
+            <p className="hero-greeting">
+                Hello, I'm Nikhil Sharma 👋
+            </p>
+
+            <h1 className="hero-title">
+                <span>Data Analyst</span>
+                <span className="gradient-text">Power BI</span>
+                <span className="gradient-text">Developer</span>
+                <span>Python &</span>
+                <span className="gradient-text">AI/ML</span>
+            </h1>
+
+            <p className="hero-description">
+                I transform data into actionable insights and build
+                intelligent solutions using analytics, Python, Power BI
+                and AI/ML.
+            </p>
+
+            <div className="hero-buttons">
+                <a href="#projects" className="btn primary-btn">
+                    View Projects
+                </a>
+
+                <a
+                    href="/Nikhil_Sharma_Resume.pdf"
+                    className="btn secondary-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Download CV
+                </a>
+            </div>
+
+        </div>
+
+
+        {/* RIGHT SIDE */}
+        <div className="hero-visual">
+
+            {/* Profile card */}
+            <div className="profile-card">
+
+                <div className="profile-image-wrapper">
+                    <img
+                        src="/profile.jpg"
+                        alt="Nikhil Sharma"
+                        className="profile-image"
+                    />
+                </div>
+
+                <h2>Nikhil Sharma</h2>
+
+                <p>
+                    Data Analyst • AI/ML • Python Developer
+                </p>
+
+                <div className="social-links">
+                    {/* Your LinkedIn/GitHub/Email buttons */}
+                </div>
+
+            </div>
+
+            
+
+            </div>
+
+        </div>
+</section>
+
+          <section id="about" className="section reveal">
   <SectionTitle
     eyebrow="01 / About Me"
     title="Turning data into insights and ideas into practical solutions."
@@ -356,175 +380,446 @@ function App() {
   </div>
 </section>
 
-        <section id="skills" className="section section-alt">
-          <SectionTitle
-            eyebrow="02 / Skills"
-            title="Tools I use to build and analyze."
-            text="A practical toolkit spanning analytics, programming, AI/ML and web development."
-          />
-          <div className="skills-dropdowns">
-  {[
-    "Data Analytics & BI",
-    "Python & Programming",
-    "AI / Machine Learning",
-    "Web Development",
-    "Tools & Technologies"
-  ].map((group) => (
-    <details className="skill-dropdown" key={group}>
+
+        <section id="skills" className="section reveal">
+
+  <div className="eyebrow">
+    02 / SKILLS & TECHNOLOGIES
+  </div>
+
+  <h2 className="section-title">
+    Tools I use to build, analyze and solve.
+  </h2>
+
+  <p className="section-subtitle">
+    A practical toolkit spanning analytics, programming, AI/ML and web development.
+  </p>
+
+  <div className="skills-list">
+
+    <details className="skill-category">
       <summary>
-        <span>{group}</span>
-        <span className="dropdown-arrow">⌄</span>
+        <span>01</span>
+        <strong>Data Analytics & BI</strong>
+        <em>+</em>
       </summary>
 
-      <div className="skills-grid">
-        {skills
-          .filter((skill) => skill.group === group)
-          .map(({ name, level, icon: Icon }) => (
-            <div className="skill-card" key={name}>
-              <div className="skill-icon">
-                <Icon size={22} />
-              </div>
-
-              <div>
-                <h3>{name}</h3>
-                <small>{level}</small>
-              </div>
-            </div>
-          ))}
+      <div className="skill-items">
+        <span>Power BI</span>
+        <span>DAX</span>
+        <span>SQL</span>
+        <span>MySQL</span>
+        <span>Advanced Excel</span>
+        <span>Data Visualization</span>
+        <span>Pandas</span>
+        <span>NumPy</span>
       </div>
     </details>
-  ))}
-</div>
-        </section>
 
-        <section id="experience" className="section">
-          <SectionTitle
-            eyebrow="03 / Experience"
-            title="Professional experience."
-            text="Experience focused on data analysis, reporting and business insights."
-          />
-          <div className="timeline">
-            {experience.map((item) => (
-              <article className="timeline-item" key={item.company}>
-                <div className="timeline-dot"></div>
-                <div className="timeline-head">
-                  <div>
-                    <span className="eyebrow">{item.period}</span>
-                    <h3>{item.role}</h3>
-                    <p className="company">{item.company}</p>
-                  </div>
-                  <BriefcaseBusiness size={28}/>
-                </div>
-                <ul>
-                  {item.points.map((point) => <li key={point}>{point}</li>)}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
+    <details className="skill-category">
+      <summary>
+        <span>02</span>
+        <strong>Python & Programming</strong>
+        <em>+</em>
+      </summary>
 
-        <section id="projects" className="section section-alt">
-          <SectionTitle
-            eyebrow="04 / Projects"
-            title="Selected work."
-            text="A mix of real and sample projects. Replace the sample links with your live demos and GitHub repositories."
-          />
-          <div className="filters">
-            {[
-              ["all","All"],
-              ["analytics","Analytics / BI"],
-              ["python","Python"],
-              ["ai","AI / ML"],
-              ["web","Web"]
-            ].map(([value,label]) => (
-              <button key={value} className={filter === value ? "active" : ""} onClick={() => setFilter(value)}>
-                {label}
-              </button>
-            ))}
-          </div>
-
-          <div className="project-grid">
-            {filteredProjects.map((project, index) => (
-              <article className="project-card" key={project.title}>
-                <div className={`project-visual visual-${(index % 4) + 1}`}>
-                  <span>{project.type === "analytics" ? "BI" : project.type === "ai" ? "AI" : project.type === "python" ? "PY" : "WEB"}</span>
-                  <ArrowUpRight size={22}/>
-                </div>
-                <div className="project-body">
-                  <span className="project-category">{project.category}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-                  <a href={project.link}>View project <ChevronRight size={16}/></a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="section education-section">
-  <SectionTitle
-    eyebrow="05 / Education & Certifications"
-    title="Building knowledge, one skill at a time."
-    text="My academic background and continuous learning journey support my work across analytics, business intelligence, Python and AI/ML."
-  />
-
-  <div className="two-column">
-
-    {/* Education */}
-    <div className="info-card education-card">
-  <div className="info-icon">
-    <GraduationCap />
-  </div>
-
-  <div>
-    <span className="skill-group">EDUCATION</span>
-
-    <div className="education-item">
-      <h3>B.Tech in Computer Science & Engineering</h3>
-
-      <p>
-        K.R. Mangalam University · 2022–2026
-        <br />
-        Specialization: Artificial Intelligence & Machine Learning
-      </p>
-
-      <div className="info-tags">
-        <span>Computer Science</span>
-        <span>AI / ML</span>
-        <span>2022–2026</span>
+      <div className="skill-items">
+        <span>Python</span>
+        <span>OOP</span>
+        <span>Pandas</span>
+        <span>NumPy</span>
+        <span>Matplotlib</span>
+        <span>Seaborn</span>
       </div>
-    </div>
+    </details>
 
-    <div className="education-divider"></div>
+    <details className="skill-category">
+      <summary>
+        <span>03</span>
+        <strong>AI / Machine Learning</strong>
+        <em>+</em>
+      </summary>
 
-    <div className="education-item">
-      <h3>Data Analytics Professional</h3>
-
-      <p>
-        Ducat The IT Training School · 2025–2026
-        <br />
-        Specialization: Generative AI
-      </p>
-
-      <div className="info-tags">
-        <span>Data Analytics</span>
+      <div className="skill-items">
+        <span>Machine Learning</span>
+        <span>Scikit-learn</span>
+        <span>Data Preprocessing</span>
+        <span>Feature Engineering</span>
+        <span>Model Evaluation</span>
         <span>Generative AI</span>
-        <span>2025–2026</span>
       </div>
+    </details>
+
+    <details className="skill-category">
+      <summary>
+        <span>04</span>
+        <strong>Web Development</strong>
+        <em>+</em>
+      </summary>
+
+      <div className="skill-items">
+        <span>React.js</span>
+        <span>JavaScript</span>
+        <span>HTML5</span>
+        <span>CSS3</span>
+        <span>Responsive Design</span>
+      </div>
+    </details>
+
+    <details className="skill-category">
+      <summary>
+        <span>05</span>
+        <strong>Tools & Technologies</strong>
+        <em>+</em>
+      </summary>
+
+      <div className="skill-items">
+        <span>Git</span>
+        <span>GitHub</span>
+        <span>VS Code</span>
+        <span>Jupyter Notebook</span>
+        <span>Power BI</span>
+        <span>MySQL</span>
+      </div>
+    </details>
+
+  </div>
+
+</section>
+
+        <section id="experience" className="section reveal">
+
+  <div className="eyebrow">
+    03 / EXPERIENCE
+  </div>
+
+  <h2 className="section-title">
+    Turning data into <span>meaningful insights.</span>
+  </h2>
+
+  <p className="section-description">
+    Professional experience focused on data analysis, reporting,
+    visualization and building data-driven solutions.
+  </p>
+
+  <div className="experience-timeline">
+
+    <div className="experience-item">
+
+      <div className="experience-dot"></div>
+
+      <div className="experience-header">
+
+        <div>
+          <span className="experience-type">
+            DATA ANALYTICS
+          </span>
+
+          <h3>
+            Data Analyst
+          </h3>
+
+          <p className="experience-company">
+            Mahalaxmi Digital Services
+          </p>
+        </div>
+
+        <span className="experience-date">
+          Professional Experience
+        </span>
+
+      </div>
+
+      <p className="experience-description">
+        Worked with business data to identify trends, generate
+        meaningful insights and support data-driven decision making.
+        Performed data cleaning, analysis and visualization while
+        working with structured datasets and business reporting.
+      </p>
+
+      <ul className="experience-points">
+
+        <li>
+          Analyzed and transformed raw datasets into meaningful
+          business insights using data analysis techniques.
+        </li>
+
+        <li>
+          Created reports and visualizations to communicate
+          important trends, patterns and performance indicators.
+        </li>
+
+        <li>
+          Used Python, SQL and Excel for data cleaning,
+          transformation, analysis and reporting.
+        </li>
+
+        <li>
+          Worked with stakeholders to understand data requirements
+          and provide useful analytical insights.
+        </li>
+
+      </ul>
+
+      <div className="experience-tags">
+        <span>Python</span>
+        <span>SQL</span>
+        <span>Excel</span>
+        <span>Data Analysis</span>
+        <span>Data Visualization</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+        <section id="projects" className="section reveal">
+  <div className="eyebrow">04 / PROJECTS</div>
+
+  <h2 className="section-title">
+    Turning ideas into <span>practical solutions.</span>
+  </h2>
+
+  <p className="section-description">
+    A selection of projects where I apply data analytics, business
+    intelligence, Python, and machine learning concepts to solve
+    real-world problems.
+  </p>
+
+  <div className="projects-grid">
+
+    {/* Project 1 */}
+    <div className="project-card">
+      <div className="project-number">01</div>
+
+      <div className="project-content">
+        <span className="project-category">
+          POWER BI • DATA ANALYTICS
+        </span>
+
+        <h3>Rapido Ride Analytics Dashboard</h3>
+
+        <p>
+          An interactive Power BI dashboard designed to analyze ride
+          performance, revenue, customer behavior, cancellations,
+          vehicle performance, and city-level trends.
+        </p>
+
+        <div className="project-tags">
+          <span>Power BI</span>
+          <span>DAX</span>
+          <span>Excel</span>
+          <span>Data Modeling</span>
+        </div>
+
+        <div className="project-links">
+          <a href="#" target="_blank" rel="noreferrer">
+            GitHub ↗
+          </a>
+
+          <a href="#" target="_blank" rel="noreferrer">
+            Live Demo ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    {/* Project 2 */}
+    <div className="project-card">
+      <div className="project-number">02</div>
+
+      <div className="project-content">
+        <span className="project-category">
+          POWER BI • BUSINESS INTELLIGENCE
+        </span>
+
+        <h3>Sales Performance Dashboard</h3>
+
+        <p>
+          An interactive sales analytics dashboard covering revenue,
+          profit, profit margin, orders, average order value, products,
+          regions, and customer segments.
+        </p>
+
+        <div className="project-tags">
+          <span>Power BI</span>
+          <span>DAX</span>
+          <span>SQL</span>
+          <span>Excel</span>
+        </div>
+
+        <div className="project-links">
+          <a href="#" target="_blank" rel="noreferrer">
+            GitHub ↗
+          </a>
+
+          <a href="#" target="_blank" rel="noreferrer">
+            Live Demo ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    {/* Project 3 */}
+<div className="project-card">
+  <div className="project-number">03</div>
+
+  <div className="project-content">
+    <span className="project-category">
+      AI • MACHINE LEARNING
+    </span>
+
+    <h3>
+      AI-Based Smart Traffic Monitoring & Congestion Prediction System
+    </h3>
+
+    <p>
+      Developed an AI-based traffic monitoring and congestion prediction
+      system using machine learning techniques. Implemented real-time
+      vehicle detection and traffic density analysis using computer vision.
+    </p>
+
+    <div className="project-tags">
+      <span>Python</span>
+      <span>OpenCV</span>
+      <span>NumPy</span>
+      <span>Machine Learning</span>
+      <span>Data Analytics</span>
+    </div>
+
+    <div className="project-links">
+      <a href="#" target="_blank" rel="noreferrer">
+        GitHub ↗
+      </a>
+
+      <a href="#" target="_blank" rel="noreferrer">
+        View Project ↗
+      </a>
     </div>
   </div>
 </div>
-    {/* Certifications */}
-    <div className="info-card">
-      <div className="info-icon">
-        <Award />
+{/* Project 4 */}
+<div className="project-card">
+  <div className="project-number">04</div>
+
+  <div className="project-content">
+    <span className="project-category">
+      WEB DEVELOPMENT
+    </span>
+
+    <h3>
+      Personal Portfolio Website
+    </h3>
+
+    <p>
+      Developed a responsive personal portfolio website using React.js
+      and CSS to showcase professional skills, projects, education,
+      and experience with a modern and responsive user interface.
+    </p>
+
+    <div className="project-tags">
+      <span>React</span>
+      <span>JavaScript</span>
+      <span>CSS</span>
+      <span>UI/UX</span>
+      <span>Frontend</span>
+    </div>
+
+    <div className="project-links">
+      <a href="#" target="_blank" rel="noreferrer">
+        GitHub ↗
+      </a>
+
+      <a href="#" target="_blank" rel="noreferrer">
+        Live Demo ↗
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+        <section id="education" className="section reveal">
+
+  <div className="eyebrow">
+    05 / EDUCATION & CERTIFICATIONS
+  </div>
+
+  <h2 className="section-title">
+    Building knowledge, one skill at a time.
+  </h2>
+
+  <p className="section-subtitle">
+    My academic background and continuous learning journey support my work
+    across analytics, business intelligence, Python and AI/ML.
+  </p>
+
+  <div className="education-grid">
+
+    {/* EDUCATION */}
+
+    <div className="education-card">
+
+      <div className="education-icon">
+        🎓
       </div>
 
-      <div>
-        <span className="skill-group">CERTIFICATIONS</span>
+      <div className="education-content">
 
-        <h3>Professional Certifications</h3>
+        <div className="card-label">
+          EDUCATION
+        </div>
+
+        <h3>
+          B.Tech in Computer Science & Engineering
+        </h3>
+
+        <p className="institution">
+          K.R. Mangalam University · 2022–2026
+        </p>
+
+        <p>
+          Specialization: Artificial Intelligence & Machine Learning
+        </p>
+
+        <div className="education-item">
+          <h4>Data Analytics Professional</h4>
+
+          <p className="institution">
+            Ducat The IT Training School · 2025–2026
+          </p>
+
+          <p>
+            Specialization: Generative AI
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {/* CERTIFICATIONS */}
+
+    <div className="education-card">
+
+      <div className="education-icon">
+        🏆
+      </div>
+
+      <div className="education-content">
+
+        <div className="card-label">
+          CERTIFICATIONS
+        </div>
+
+        <h3>
+          Professional Certifications
+        </h3>
 
         <div className="certification-list">
 
@@ -554,10 +849,13 @@ function App() {
           </div>
 
         </div>
+
       </div>
+
     </div>
 
   </div>
+
 </section>
 
         <section className="resume-banner">
@@ -571,12 +869,20 @@ function App() {
           </a>
         </section>
 
-        <section id="contact" className="section contact-section">
-  <SectionTitle
-    eyebrow="06 / Contact"
-    title="Let's build something meaningful."
-    text="Interested in data analytics, business intelligence, Python, AI/ML or web development? Feel free to connect with me."
-  />
+        <section id="contact" className="section reveal">
+
+  <div className="eyebrow">
+    06 / CONTACT
+  </div>
+
+  <h2 className="section-title">
+    Let's build something <span>meaningful.</span>
+  </h2>
+
+  <p className="section-description">
+    I'm open to opportunities, collaborations and conversations
+    around data analytics, Power BI, Python, AI/ML and web development.
+  </p>
 
   <div className="contact-grid">
 
@@ -584,13 +890,18 @@ function App() {
       className="contact-card"
       href="nikhillsharma455@gmail.com"
     >
-      <Mail />
-      <span>
+      <div className="contact-icon">
+        ✉
+      </div>
+
+      <div>
         <small>EMAIL</small>
-        Nikhillsharma455@gmail.com
-      </span>
-      <ArrowUpRight />
+        <strong>nikhillsharma455@gmail.com</strong>
+      </div>
+
+      <span className="contact-arrow">↗</span>
     </a>
+
 
     <a
       className="contact-card"
@@ -598,13 +909,18 @@ function App() {
       target="_blank"
       rel="noreferrer"
     >
-      <Linkedin />
-      <span>
+      <div className="contact-icon">
+        in
+      </div>
+
+      <div>
         <small>LINKEDIN</small>
-        www.linkedin.com/in/Nikhil Sharma
-      </span>
-      <ArrowUpRight />
+        <strong>Nikhil Sharma</strong>
+      </div>
+
+      <span className="contact-arrow">↗</span>
     </a>
+
 
     <a
       className="contact-card"
@@ -612,25 +928,52 @@ function App() {
       target="_blank"
       rel="noreferrer"
     >
-      <Github />
-      <span>
+      <div className="contact-icon">
+        &lt;/&gt;
+      </div>
+
+      <div>
         <small>GITHUB</small>
-        github.com/Nikhil22017
-      </span>
-      <ArrowUpRight />
+        <strong>Nikhil22017</strong>
+      </div>
+
+      <span className="contact-arrow">↗</span>
     </a>
 
   </div>
 
-  <div className="contact-note">
-    <span>OPEN TO OPPORTUNITIES</span>
-    <p>
-      I'm currently interested in opportunities related to Data Analytics,
-      Power BI, Python, AI/ML and Web Development.
-    </p>
-  </div>
-</section>
 
+  {/* Resume */}
+
+  <div className="resume-banner">
+
+    <div>
+      <span className="resume-label">
+        RESUME
+      </span>
+
+      <h3>
+        Want to know more about my work?
+      </h3>
+
+      <p>
+        Download my resume to explore my skills, experience,
+        education and projects.
+      </p>
+    </div>
+
+    <a
+      href="/Nikhil_Sharma_Resume.pdf"
+      target="_blank"
+      rel="noreferrer"
+      className="resume-button"
+    >
+      View Resume ↗
+    </a>
+
+  </div>
+
+</section>
       <footer>
   <div className="footer-brand">
     <span className="brand-mark">NS</span>
