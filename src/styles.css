@@ -4509,3 +4509,1120 @@ footer {
   }
 
 }
+/* ==========================================
+   PREMIUM HERO ORBIT BACKGROUND
+========================================== */
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ==========================================
+   ORBIT CONTAINER
+========================================== */
+
+.hero-orbit {
+  position: absolute;
+
+  width: 780px;
+  height: 780px;
+
+  top: 50%;
+  right: -150px;
+
+  transform:
+    translate(
+      var(--orbit-x, 0px),
+      calc(-50% + var(--orbit-y, 0px))
+    );
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  opacity: 0.95;
+
+  transition: opacity 0.4s ease;
+}
+/* ==========================================
+   ORBIT DEPTH
+========================================== */
+
+.orbit-one {
+  transition:
+    transform 0.4s ease-out;
+}
+
+.orbit-two {
+  transition:
+    transform 0.5s ease-out;
+}
+
+.orbit-three {
+  transition:
+    transform 0.6s ease-out;
+}
+/* ==========================================
+   ORBIT DEPTH
+========================================== */
+
+.orbit-one,
+.orbit-two,
+.orbit-three {
+  will-change: transform;
+}
+
+
+/* ==========================================
+   ORBIT RINGS
+========================================== */
+
+.orbit {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+
+/* Outer orbit */
+
+.orbit-one {
+  width: 600px;
+  height: 600px;
+
+  border: 1px solid rgba(0, 217, 255, 0.13);
+
+  box-shadow:
+    0 0 35px rgba(0, 217, 255, 0.025);
+
+  animation:
+    premiumOrbitOne 28s linear infinite;
+}
+
+
+/* Middle orbit */
+
+.orbit-two {
+  width: 455px;
+  height: 455px;
+
+  border: 1px dashed rgba(0, 170, 255, 0.15);
+
+  animation:
+    premiumOrbitTwo 20s linear infinite reverse;
+}
+
+
+/* Inner orbit */
+
+.orbit-three {
+  width: 315px;
+  height: 315px;
+
+  border: 1px solid rgba(0, 217, 255, 0.18);
+
+  box-shadow:
+    inset 0 0 30px rgba(0, 217, 255, 0.025),
+    0 0 30px rgba(0, 217, 255, 0.025);
+
+  animation:
+    premiumOrbitThree 15s linear infinite;
+}
+
+
+/* ==========================================
+   ORBIT GLOW
+========================================== */
+
+.orbit-glow {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 360px;
+  height: 360px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 217, 255, 0.11) 0%,
+      rgba(0, 140, 255, 0.055) 30%,
+      rgba(0, 100, 255, 0.02) 50%,
+      transparent 72%
+    );
+
+  filter: blur(18px);
+
+  animation:
+    premiumGlow 6s ease-in-out infinite;
+    .orbit-glow {
+  will-change: transform, opacity;
+}
+}
+
+
+/* ==========================================
+   GLOWING ORBIT DOTS
+========================================== */
+
+.orbit-one::after,
+.orbit-two::after,
+.orbit-three::after {
+  content: "";
+
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #00d9ff;
+
+  box-shadow:
+    0 0 8px rgba(0, 217, 255, 0.9),
+    0 0 20px rgba(0, 217, 255, 0.55),
+    0 0 35px rgba(0, 217, 255, 0.25);
+}
+
+
+/* Outer dot */
+
+.orbit-one::after {
+  top: 10%;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+/* Middle dot */
+
+.orbit-two::after {
+  top: 50%;
+  right: -4px;
+
+  transform: translateY(-50%);
+
+  width: 6px;
+  height: 6px;
+}
+
+
+/* Inner dot */
+
+.orbit-three::after {
+  bottom: 5%;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 5px;
+  height: 5px;
+}
+
+
+/* ==========================================
+   ORBIT ROTATIONS
+========================================== */
+
+@keyframes premiumOrbitOne {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+@keyframes premiumOrbitTwo {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+@keyframes premiumOrbitThree {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+/* ==========================================
+   GLOW ANIMATION
+========================================== */
+
+@keyframes premiumGlow {
+
+  0%,
+  100% {
+    opacity: 0.45;
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.94);
+  }
+
+  50% {
+    opacity: 0.8;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.08);
+  }
+
+}
+
+
+/* ==========================================
+   HERO CONTENT ABOVE BACKGROUND
+========================================== */
+
+.hero-container {
+  position: relative;
+
+  z-index: 2;
+}
+/* ==========================================
+   SUBTLE HERO GRID
+========================================== */
+
+.hero-section::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 217, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 217, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image:
+    radial-gradient(
+      ellipse at center,
+      black 0%,
+      transparent 72%
+    );
+
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at center,
+      black 0%,
+      transparent 72%
+    );
+}
+@media (max-width: 700px) {
+
+  .hero-orbit {
+    width: 520px;
+    height: 520px;
+
+    top: 52%;
+    right: -210px;
+
+    opacity: 0.65;
+  }
+
+  .orbit-one {
+    width: 420px;
+    height: 420px;
+  }
+
+  .orbit-two {
+    width: 320px;
+    height: 320px;
+  }
+
+  .orbit-three {
+    width: 230px;
+    height: 230px;
+  }
+
+  .orbit-glow {
+    width: 250px;
+    height: 250px;
+
+    opacity: 0.6;
+  }
+
+  .hero-section::before {
+    background-size: 55px 55px;
+
+    opacity: 0.5;
+  }
+
+}
+/* =========================================================
+   COMMUNITY HEADING — MATCH OTHER SECTIONS
+   ========================================================= */
+
+.community-section .section-heading {
+  text-align: left;
+  max-width: 900px;
+  margin: 0 0 50px;
+}
+
+.community-section .section-heading h2 {
+  margin-top: 14px;
+
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  line-height: 1.05;
+
+  letter-spacing: -0.04em;
+}
+
+.community-section .section-heading p {
+  margin: 24px 0 0;
+
+  max-width: 850px;
+
+  color: #8f96ad;
+
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+@media (max-width: 768px) {
+
+  .community-section .section-heading {
+    padding: 0;
+    margin-bottom: 35px;
+    text-align: left;
+  }
+
+  .community-section .section-heading h2 {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+
+  .community-section .section-heading p {
+    font-size: 0.95rem;
+  }
+
+}
+
+
+/* =========================================================
+   COMMUNITY CARD
+   ========================================================= */
+
+.community-card {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+
+  background: rgba(17, 19, 31, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(0, 200, 255, 0.04);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* Subtle cyan/purple glow */
+.community-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(0, 217, 255, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 100%,
+      rgba(139, 92, 246, 0.08),
+      transparent 35%
+    );
+}
+
+
+/* =========================================================
+   COMMUNITY HEADER
+   ========================================================= */
+
+.community-header {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+
+  padding: 28px 30px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.community-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+.community-dot {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 10px rgba(34, 197, 94, 0.8),
+    0 0 22px rgba(34, 197, 94, 0.35);
+
+  animation: communityPulse 2s ease-in-out infinite;
+}
+
+
+@keyframes communityPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
+}
+
+
+.community-status strong {
+  display: block;
+
+  color: #f1f3f8;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+.community-status small {
+  display: block;
+  margin-top: 4px;
+
+  color: #777f97;
+  font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   GOOGLE LOGIN BUTTON
+   ========================================================= */
+
+.community-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 20px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #a855f7 55%,
+    #f59e0b
+  );
+
+  color: #080910;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+
+.community-login:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 30px rgba(139, 92, 246, 0.25);
+
+  filter: brightness(1.08);
+}
+
+
+.community-login:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   MESSAGE AREA
+   ========================================================= */
+
+.community-messages {
+  position: relative;
+  z-index: 1;
+
+  height: 480px;
+
+  padding: 28px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scroll-behavior: smooth;
+
+  background: rgba(8, 10, 18, 0.35);
+}
+
+
+/* Custom scrollbar */
+
+.community-messages::-webkit-scrollbar {
+  width: 7px;
+}
+
+.community-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.community-messages::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.45);
+  border-radius: 20px;
+}
+
+.community-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.7);
+}
+
+
+/* =========================================================
+   INDIVIDUAL MESSAGE
+   ========================================================= */
+
+.community-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  margin-bottom: 26px;
+
+  animation: communityMessageIn 0.45s ease both;
+}
+
+
+@keyframes communityMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.community-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(0, 217, 255, 0.35);
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 217, 255, 0.15),
+      rgba(139, 92, 246, 0.15)
+    );
+
+  color: #00d9ff;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+.community-avatar.visitor {
+  border-color: rgba(245, 158, 11, 0.4);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 158, 11, 0.2),
+      rgba(239, 68, 68, 0.15)
+    );
+
+  color: #fbbf24;
+}
+
+
+/* Message content */
+
+.message-content {
+  min-width: 0;
+  max-width: 75%;
+}
+
+
+.message-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-bottom: 8px;
+}
+
+
+.message-meta strong {
+  color: #edf0f7;
+  font-size: 0.95rem;
+}
+
+
+.message-meta span {
+  color: #626a80;
+  font-size: 0.75rem;
+}
+
+
+.message-content p {
+  margin: 0;
+
+  padding: 16px 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px 18px 18px 18px;
+
+  background: rgba(25, 28, 42, 0.85);
+
+  color: #aeb4c5;
+
+  font-size: 0.95rem;
+  line-height: 1.65;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Visitor message */
+
+.visitor-message {
+  flex-direction: row-reverse;
+}
+
+
+.visitor-message .message-content {
+  text-align: right;
+}
+
+
+.visitor-message .message-meta {
+  justify-content: flex-end;
+}
+
+
+.visitor-message .message-content p {
+  border-radius: 18px 6px 18px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 145, 255, 0.18),
+      rgba(79, 70, 229, 0.18)
+    );
+
+  border-color: rgba(0, 217, 255, 0.18);
+
+  color: #d8def0;
+}
+
+
+/* =========================================================
+   COMMUNITY INPUT
+   ========================================================= */
+
+.community-input-area {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 20px 24px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(13, 15, 25, 0.92);
+}
+
+
+.community-input-wrapper {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 54px;
+
+  padding: 0 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+
+  background: rgba(23, 26, 39, 0.9);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.community-input-wrapper:focus-within {
+  border-color: rgba(0, 217, 255, 0.55);
+
+  box-shadow:
+    0 0 0 3px rgba(0, 217, 255, 0.08),
+    0 0 25px rgba(0, 217, 255, 0.06);
+}
+
+
+.community-input-wrapper input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 52px;
+
+  padding: 0 10px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #f1f3f8;
+
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+
+.community-input-wrapper input::placeholder {
+  color: #666e84;
+}
+
+
+/* Attachment / microphone buttons */
+
+.community-icon-btn {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #727a91;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.community-icon-btn:hover {
+  color: #00d9ff;
+
+  background: rgba(0, 217, 255, 0.08);
+
+  transform: translateY(-1px);
+}
+
+
+/* Send button */
+
+.community-send {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #00cfff,
+    #009dff
+  );
+
+  color: white;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(0, 174, 255, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+.community-send:hover {
+  transform: translateY(-3px) scale(1.03);
+
+  box-shadow:
+    0 12px 35px rgba(0, 174, 255, 0.35);
+}
+
+
+.community-send:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .community-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .community-section .section-heading {
+    padding: 0 18px;
+    margin-bottom: 35px;
+  }
+
+  .community-section .section-heading h2 {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+
+  .community-section .section-heading p {
+    font-size: 0.95rem;
+  }
+
+  .community-card {
+    width: calc(100% - 28px);
+    border-radius: 22px;
+  }
+
+  .community-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding: 22px 20px;
+  }
+
+  .community-login {
+    width: 100%;
+  }
+
+  .community-messages {
+    height: 430px;
+    padding: 20px 16px;
+  }
+
+  .community-message {
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .community-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 0.75rem;
+  }
+
+  .message-content {
+    max-width: calc(100% - 48px);
+  }
+
+  .message-content p {
+    padding: 13px 15px;
+    font-size: 0.9rem;
+  }
+
+  .message-meta {
+    gap: 7px;
+  }
+
+  .message-meta strong {
+    font-size: 0.85rem;
+  }
+
+  .message-meta span {
+    font-size: 0.68rem;
+  }
+
+  .community-input-area {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .community-input-wrapper {
+    min-height: 50px;
+    border-radius: 16px;
+  }
+
+  .community-input-wrapper input {
+    height: 48px;
+    font-size: 0.88rem;
+  }
+
+  .community-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .community-send {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .community-card {
+    width: calc(100% - 20px);
+  }
+
+  .community-header {
+    padding: 20px 16px;
+  }
+
+  .community-messages {
+    height: 400px;
+    padding: 18px 12px;
+  }
+
+  .community-status strong {
+    font-size: 0.9rem;
+  }
+
+  .community-status small {
+    font-size: 0.72rem;
+  }
+
+  .community-login {
+    min-height: 46px;
+    padding: 0 14px;
+    font-size: 0.8rem;
+  }
+
+  .community-input-area {
+    padding: 12px 10px;
+  }
+
+  /* Hide attachment button on very small screens */
+  .community-input-wrapper .community-icon-btn:first-child {
+    display: none;
+  }
+}

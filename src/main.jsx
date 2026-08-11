@@ -1,10 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  BarChart3, BrainCircuit, Code2, Database, Download, ExternalLink,
-Github, Linkedin, Mail, Menu, X, ArrowUpRight, FileSpreadsheet,
-BriefcaseBusiness, GraduationCap, Award, ChevronRight,
-MessageCircle, Send
+  BarChart3,
+  BrainCircuit,
+  Code2,
+  Database,
+  Download,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Mail,
+  Menu,
+  X,
+  ArrowUpRight,
+  FileSpreadsheet,
+  BriefcaseBusiness,
+  GraduationCap,
+  Award,
+  ChevronRight,
+  MessageCircle,
+  Send,
+  Paperclip,
+  Mic,
+  LogIn,
+  FileText
 } from "lucide-react";
 import "./styles.css";
 
@@ -219,7 +238,66 @@ const [chatInput, setChatInput] = useState("");
 
   return () => observer.disconnect();
 }, []);
+useEffect(() => {
+  const hero = document.querySelector(".hero-section");
+  const orbit = document.querySelector(".hero-orbit");
 
+  if (!hero || !orbit) return;
+
+  // Disable mouse parallax on touch/mobile devices
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    return;
+  }
+
+  let targetX = 0;
+  let targetY = 0;
+
+  let currentX = 0;
+  let currentY = 0;
+
+  let animationFrame;
+
+  const handleMouseMove = (event) => {
+    const rect = hero.getBoundingClientRect();
+
+    const mouseX =
+      (event.clientX - rect.left) / rect.width;
+
+    const mouseY =
+      (event.clientY - rect.top) / rect.height;
+
+    // Small movement range
+    targetX = (mouseX - 0.5) * 24;
+    targetY = (mouseY - 0.5) * 24;
+  };
+
+  const animate = () => {
+    currentX += (targetX - currentX) * 0.06;
+    currentY += (targetY - currentY) * 0.06;
+
+    orbit.style.setProperty(
+      "--orbit-x",
+      `${currentX}px`
+    );
+
+    orbit.style.setProperty(
+      "--orbit-y",
+      `${currentY}px`
+    );
+
+    animationFrame = requestAnimationFrame(animate);
+  };
+
+  hero.addEventListener("mousemove", handleMouseMove);
+
+  animationFrame = requestAnimationFrame(animate);
+
+  return () => {
+    hero.removeEventListener("mousemove", handleMouseMove);
+
+    cancelAnimationFrame(animationFrame);
+  };
+}, []);
   const filteredProjects =
     filter === "all" ? projects : projects.filter((p) => p.type === filter);
 
@@ -518,7 +596,15 @@ const askSuggestedQuestion = (question) => {
         </button>
 
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
-          {["home", "about", "skills", "experience", "projects", "contact"].map((item) => (
+          {[
+  "home",
+  "about",
+  "skills",
+  "experience",
+  "projects",
+  "contact",
+  "community"
+].map((item) => (
             <a key={item} href={`#${item}`} onClick={closeMenu}>
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </a>
@@ -528,8 +614,18 @@ const askSuggestedQuestion = (question) => {
       </header>
 
       <main>
-        <section id="home" className="hero-section">
-    <div className="hero-container">
+       <section id="home" className="hero-section">
+
+  {/* Animated background */}
+  <div className="hero-orbit" aria-hidden="true">
+    <div className="orbit orbit-one"></div>
+    <div className="orbit orbit-two"></div>
+    <div className="orbit orbit-three"></div>
+
+    <div className="orbit-glow"></div>
+  </div>
+
+  <div className="hero-container">
 
         {/* LEFT SIDE */}
         <div className="hero-content">
@@ -1191,16 +1287,7 @@ const askSuggestedQuestion = (question) => {
 
 </section>
 
-        <section className="resume-banner">
-          <div>
-            <span className="eyebrow">READY TO CONNECT?</span>
-            <h2>Let's build something meaningful with data.</h2>
-            <p>Download my resume or reach out to discuss an opportunity.</p>
-          </div>
-          <a className="btn btn-primary" href="/resume.pdf" download>
-            <Download size={18}/> Download Resume
-          </a>
-        </section>
+        
 
         <section id="contact" className="section reveal">
 
@@ -1461,6 +1548,210 @@ const askSuggestedQuestion = (question) => {
   </button>
 
 </div>
+
+
+{/* ==========================================
+    COMMUNITY
+========================================== */}
+
+<section id="community" className="section community-section reveal">
+
+  <div className="section-heading">
+
+    <span className="eyebrow">
+      07 / COMMUNITY
+    </span>
+
+    <h2>
+      Nikhil's <span>Dev Community</span>
+    </h2>
+
+    <p>
+      Ask questions, share ideas and connect with other people
+      interested in technology, data analytics, Python and AI/ML.
+    </p>
+
+  </div>
+
+
+  <div className="community-card">
+
+    {/* Community Header */}
+
+    <div className="community-header">
+
+      <div className="community-status">
+        <span className="community-dot"></span>
+
+        <div>
+          <strong>
+            Live community chat
+          </strong>
+
+          <small>
+            Connect with the community
+          </small>
+        </div>
+      </div>
+
+
+      <button
+        className="community-login"
+        type="button"
+      >
+        <LogIn size={18} />
+
+        Continue with Google to join
+      </button>
+
+    </div>
+
+
+    {/* Messages */}
+
+    <div className="community-messages">
+
+      {/* Message 1 */}
+
+      <div className="community-message">
+
+        <div className="community-avatar">
+          NS
+        </div>
+
+        <div className="message-content">
+
+          <div className="message-meta">
+            <strong>
+              Nikhil Sharma
+            </strong>
+
+            <span>
+              Today · 10:15
+            </span>
+          </div>
+
+          <p>
+            Welcome to my community! 👋
+          </p>
+
+        </div>
+
+      </div>
+
+
+      {/* Message 2 */}
+
+      <div className="community-message">
+
+        <div className="community-avatar">
+          NS
+        </div>
+
+        <div className="message-content">
+
+          <div className="message-meta">
+
+            <strong>
+              Nikhil Sharma
+            </strong>
+
+            <span>
+              Today · 10:18
+            </span>
+
+          </div>
+
+          <p>
+            Feel free to ask me anything about data analytics,
+            Power BI, Python, AI/ML or my projects.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      {/* Example visitor message */}
+
+      <div className="community-message visitor-message">
+
+        <div className="community-avatar visitor">
+          Y
+        </div>
+
+        <div className="message-content">
+
+          <div className="message-meta">
+
+            <strong>
+              You
+            </strong>
+
+            <span>
+              Today · 10:20
+            </span>
+
+          </div>
+
+          <p>
+            Which tools do you use for data analytics?
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    {/* Community Input */}
+
+    <div className="community-input-area">
+
+      <div className="community-input-wrapper">
+
+        <button
+          className="community-icon-btn"
+          type="button"
+          aria-label="Attach file"
+        >
+          <Paperclip size={20} />
+        </button>
+
+
+        <input
+          type="text"
+          placeholder="Write a message..."
+          aria-label="Community message"
+        />
+
+
+        <button
+          className="community-icon-btn"
+          type="button"
+          aria-label="Voice message"
+        >
+          <Mic size={20} />
+        </button>
+
+      </div>
+
+
+      <button
+        className="community-send"
+        type="button"
+        aria-label="Send message"
+      >
+        <Send size={20} />
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
       <footer>
   <div className="footer-brand">
     <span className="brand-mark">NS</span>
