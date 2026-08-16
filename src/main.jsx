@@ -1121,13 +1121,21 @@ const askSuggestedQuestion = (question) => {
     </div>
 
     <div className="project-links">
-      <a href="#" target="_blank" rel="noreferrer">
-        GitHub ↗
-      </a>
+      <a
+  href="https://github.com/Nikhil22017/traffic-ai-dashboard"
+  target="_blank"
+  rel="noreferrer"
+>
+  GitHub ↗
+</a>
 
-      <a href="#" target="_blank" rel="noreferrer">
-        View Project ↗
-      </a>
+<a
+  href="https://traffic-ai-dashboard.streamlit.app/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Live Demo ↗
+</a>
     </div>
   </div>
 </div>
@@ -1159,13 +1167,21 @@ const askSuggestedQuestion = (question) => {
     </div>
 
     <div className="project-links">
-      <a href="#" target="_blank" rel="noreferrer">
-        GitHub ↗
-      </a>
+      <a
+  href="https://github.com/Nikhil22017/nikhil-portfolio"
+  target="_blank"
+  rel="noreferrer"
+>
+  GitHub ↗
+</a>
 
-      <a href="#" target="_blank" rel="noreferrer">
-        Live Demo ↗
-      </a>
+<a
+  href="https://nikhil-portfolio-j7tk.vercel.app/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Live Demo ↗
+</a>
     </div>
   </div>
 </div>
