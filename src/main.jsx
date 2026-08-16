@@ -1169,6 +1169,52 @@ const askSuggestedQuestion = (question) => {
     </div>
   </div>
 </div>
+{/* Project 5 */}
+<div className="project-card">
+  <div className="project-number">05</div>
+
+  <div className="project-content">
+    <span className="project-category">
+      EDTECH • EDUCATIONAL PLATFORM
+    </span>
+
+    <h3>
+      Clear Vision for UPSC/UPPSC
+    </h3>
+
+    <p>
+      A modern and responsive educational platform designed for
+      UPSC and competitive exam aspirants, providing organized
+      access to premium study resources and learning materials.
+    </p>
+
+    <div className="project-tags">
+      <span>React.js</span>
+      <span>TSX</span>
+      <span>Vite</span>
+      <span>Tailwind CSS</span>
+      <span>JavaScript</span>
+    </div>
+
+    <div className="project-links">
+      <a
+  href="https://github.com/Nikhil22017/Clear-vison-upsc"
+  target="_blank"
+  rel="noreferrer"
+>
+  GitHub ↗
+</a>
+
+<a
+  href="https://clear-vison-upsc.vercel.app/"
+  target="_blank"
+  rel="noreferrer"
+>
+  Live Demo ↗
+</a>
+    </div>
+  </div>
+</div>
 </div>
 </section>
 
